@@ -1,0 +1,51 @@
+{
+  "name": "e-commerce-chatbot",
+  "version": "1.0.0",
+  "description": "AI-powered e-commerce chatbot frontend",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage",
+    "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
+    "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.15.0",
+    "axios": "^1.5.0",
+    "socket.io-client": "^4.7.2",
+    "@reduxjs/toolkit": "^1.9.5",
+    "react-redux": "^8.1.2",
+    "styled-components": "^6.0.7",
+    "framer-motion": "^10.16.4",
+    "react-hook-form": "^7.45.4",
+    "react-query": "^3.39.3"
+  },
+  "devDependencies": {
+    "@types/react": "^18.2.21",
+    "@types/react-dom": "^18.2.7",
+    "@vitejs/plugin-react": "^4.0.4",
+    "vite": "^4.4.9",
+    "vitest": "^0.34.4",
+    "@testing-library/react": "^13.4.0",
+    "@testing-library/jest-dom": "^6.1.3",
+    "eslint": "^8.48.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "prettier": "^3.0.3",
+    "typescript": "^5.2.2"
+  },
+  "keywords": [
+    "chatbot",
+    "e-commerce",
+    "react",
+    "ai"
+  ],
+  "author": "",
+  "license": "MIT"
+}

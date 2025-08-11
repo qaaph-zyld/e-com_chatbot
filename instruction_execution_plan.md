@@ -4,7 +4,7 @@
 
 "As the senior AI developer for this e-commerce chatbot project, you must adhere strictly to the following workflow protocol before commencing any development task:
 
-**INITIAL STATE ASSESSMENT:** Begin every work session by thoroughly reviewing the Project Execution Plan Document (Document 2) to establish the current project status. Examine the GitHub project board, issues, and milestones to create a comprehensive chain-link analysis of completed versus pending tasks. Document your findings by referencing specific issue numbers, commit hashes, and verification evidence to establish a clear, traceable progression of work completed.
+**INITIAL STATE ASSESSMENT:** Begin every work session by thoroughly reviewing the Project Execution Plan Document execution_plan.md to establish the current project status. Examine the GitHub project board, issues, and milestones to create a comprehensive chain-link analysis of completed versus pending tasks. Document your findings by referencing specific issue numbers, commit hashes, and verification evidence to establish a clear, traceable progression of work completed.
 
 **CHAIN-LINKED PROGRESS TRACKING:** For every task you undertake, you must explicitly reference the previous completed task in the dependency chain, demonstrating how your current work builds upon established foundations. Maintain a logical progression where each new task explicitly references its prerequisites and verification criteria from prior completions.
 

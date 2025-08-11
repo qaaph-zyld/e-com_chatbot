@@ -1,0 +1,43 @@
+# E-Commerce Chatbot Backend Dependencies
+# Phase 1: Core Infrastructure
+flask==2.3.3
+flask-cors==4.0.0
+flask-jwt-extended==4.5.3
+python-dotenv==1.0.0
+requests==2.31.0
+
+# Database
+psycopg2-binary==2.9.7
+pymongo==4.5.0
+redis==4.6.0
+
+# AI/ML
+openai==0.28.1
+transformers==4.33.2
+torch==2.0.1
+
+# Web Scraping
+beautifulsoup4==4.12.2
+scrapy==2.10.1
+selenium==4.12.0
+
+# API Integration
+shopify-python-api==12.2.0
+stripe==6.6.0
+
+# Search
+elasticsearch==8.9.0
+
+# Testing
+pytest==7.4.2
+pytest-cov==4.1.0
+pytest-mock==3.11.1
+
+# Development
+black==23.7.0
+flake8==6.0.0
+mypy==1.5.1
+
+# Production
+gunicorn==21.2.0
+celery==5.3.1
