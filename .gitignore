@@ -1,0 +1,64 @@
+# General
+.DS_Store
+Thumbs.db
+*.log
+logs/
+*.tmp
+*.swp
+*.swo
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+.eggs/
+.python-version
+.venv/
+venv/
+env/
+.cache/
+.pytest_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.pyre/
+
+# Node / Frontend
+node_modules/
+.npm/
+.pnpm-store/
+yarn.lock
+pnpm-lock.yaml
+package-lock.json
+bower_components/
+.dist/
+dist/
+build/
+coverage/
+
+# Env / Secrets
+.env
+.env.*
+*.env
+.env.local
+.envrc
+
+# IDE / Editor
+.vscode/
+.idea/
+*.code-workspace
+
+# Docker
+*.pid
+*.pid.lock
+**/docker-data/
+
+# OS
+Icon?
+
+# Misc
+.sass-cache/
+*.orig
+*.rej
