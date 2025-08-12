@@ -1,12 +1,12 @@
 """
-Products Service Routes
-Handles product search, retrieval, and recommendations
+Product service routes with search, retrieval, and recommendations
 """
-
 from flask import Blueprint, request, jsonify
+from flask_jwt_extended import jwt_required, get_jwt_identity
 import uuid
-import logging
 from datetime import datetime
+import logging
+from backend.models.product import Product
 
 products_bp = Blueprint('products', __name__)
 logger = logging.getLogger(__name__)
