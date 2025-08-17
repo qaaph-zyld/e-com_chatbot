@@ -1,14 +1,12 @@
 """
-Authentication Service Routes
-Handles user authentication and authorization
+Auth service routes with user authentication and authorization
 """
-
 from flask import Blueprint, request, jsonify
-from flask_jwt_extended import jwt_required, create_access_token, get_jwt_identity
+from flask_jwt_extended import jwt_required, get_jwt_identity, create_access_token
 import uuid
-import hashlib
+from datetime import datetime, timedelta
 import logging
-from datetime import datetime
+from backend.models.user import User
 
 auth_bp = Blueprint('auth', __name__)
 logger = logging.getLogger(__name__)
@@ -27,25 +25,36 @@ def register():
         email = data['email']
         password = data['password']
         
-        # TODO: Validate email format and password strength
-        # TODO: Check if user already exists
-        # TODO: Hash password properly (use bcrypt in production)
-        password_hash = hashlib.sha256(password.encode()).hexdigest()
+        # Check if user already exists
+        existing_user = User.find_by_email(email) or User.find_by_username(username)
+        if existing_user:
+            return jsonify({'error': 'User with this email or username already exists'}), 409
         
-        # TODO: Store user in database
-        user_id = str(uuid.uuid4())
-        user_data = {
-            'id': user_id,
-            'username': username,
-            'email': email,
-            'first_name': data.get('first_name', ''),
-            'last_name': data.get('last_name', ''),
-            'created_at': datetime.utcnow().isoformat(),
-            'is_active': True
-        }
+        # Create new user with hashed password
+        user = User(
+            email=email,
+            username=username,
+            password_hash=User.hash_password(password),
+            first_name=data.get('first_name', ''),
+            last_name=data.get('last_name', ''),
+            phone=data.get('phone')
+        )
         
-        # Create access token
-        access_token = create_access_token(identity=user_id)
+        if user.save():
+            # Create access token
+            access_token = create_access_token(identity=user.user_id)
+            
+            logger.info(f"User registered: {username} ({email})")
+            
+            return jsonify({
+                'success': True,
+                'data': {
+                    'user': user.to_dict(),
+                    'access_token': access_token
+                }
+            })
+        else:
+            return jsonify({'error': 'Failed to create user'}), 500
         
         logger.info(f"User registered: {username} ({email})")
         
@@ -73,32 +82,24 @@ def login():
         email = data['email']
         password = data['password']
         
-        # TODO: Retrieve user from database
-        # TODO: Verify password hash
-        # Mock authentication for now
-        if email == 'test@example.com' and password == 'password':
-            user_id = str(uuid.uuid4())
-            user_data = {
-                'id': user_id,
-                'username': 'testuser',
-                'email': email,
-                'first_name': 'Test',
-                'last_name': 'User'
-            }
-            
-            access_token = create_access_token(identity=user_id)
+        # Authenticate user using database model
+        user = User.authenticate(email, password)
+        
+        if user:
+            # Create access token
+            access_token = create_access_token(identity=user.user_id)
             
             logger.info(f"User logged in: {email}")
             
             return jsonify({
                 'success': True,
                 'data': {
-                    'user': user_data,
+                    'user': user.to_dict(),
                     'access_token': access_token
                 }
             })
         else:
-            return jsonify({'error': 'Invalid credentials'}), 401
+            return jsonify({'error': 'Invalid email or password'}), 401
         
     except Exception as e:
         logger.error(f"Error logging in user: {str(e)}")
